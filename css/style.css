@@ -1,0 +1,102 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Ubuntu", sans-serif;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1280px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.title {
+  font-weight: 500;
+  font-size: calc(18px + 6 * ((100vw - 320px) / (1440 - 320)));
+  line-height: calc(28 / 24);
+  color: #000;
+  margin: 20px 0;
+}
+
+.line::before {
+  content: "";
+  display: block;
+  width: 16px;
+  height: 2px;
+  position: absolute;
+  -webkit-transform: translate(-100%, 100%);
+          transform: translate(-100%, 100%);
+  background: #f19932;
+  border-radius: 2px;
+}
+
+.profile {
+  margin: 80px 0;
+}
+
+@media screen and (max-width: 991px) {
+  .profile {
+    margin: 40px 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile {
+    margin: 20px 0;
+  }
+}
+
+.profile__row {
+  margin: 0 -20px 32px;
+}
+
+.profile__description {
+  font-style: italic;
+  font-size: calc(12px + 2 * ((100vw - 320px) / (1440 - 320)));
+  line-height: calc(16 / 14);
+  color: #333;
+  position: relative;
+  padding: 0 20px;
+}
+
+.profile__description .line::before {
+  top: 6px;
+  left: 16px;
+}
+
+.notices {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 0px 4px 4px 0px;
+  max-width: 473px;
+  margin: 0 -20px;
+  position: relative;
+}
+
+.notices::before {
+  content: "";
+  background: rgba(251, 217, 44, 0.16);
+  height: 100%;
+  width: 300%;
+  position: absolute;
+  left: -200%;
+}
+
+.notices__wrapper {
+  padding: 20px;
+}
+
+.notices__icon {
+  padding-right: 20px;
+}
