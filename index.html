@@ -6,50 +6,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
 
 <body>
-    <div class="profile">
-        <div class="container">
-            <h1 class="profile__title title">Профиль рабочей группы</h1>
-            <div class="profile__row">
-                <p class="profile__description">
-                    <span class="line"></span>
-                    В данном разделе вы можете посмотреть и отредактировать информацию
-                    по своей рабочей группе, настроить права участников, расшарить настройки полностью или частично
-                    для
-                    других рабочих групп,а также сделать полную копию вашей рабочей группы с ограниченным доступом
-                    для
-                    тонкой настройки без публичных оповещений.
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="main-information">
-        <div class="container">
-            <h2 class="main-information__title title">Основная информация</h2>
-
-            <div class="notices">
-                <div class="notices__wrapper">
-                    <div class="notices__title">Внимание!</div>
-                    <div class="notices__text">Ваши данные сохранены в браузере, но не отправлены на сервер. <br>
-                        Нажмите
-                        кнопку “Отправить”, чтобы завершить редактирование.</div>
-                </div>
-                <div class="notices__icon">
-                    <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M2.00137 17.0075H17.0614C18.6014 17.0075 19.5614 15.3375 18.7914 14.0075L11.2614 0.9975C10.4914 -0.3325 8.57137 -0.3325 7.80137 0.9975L0.271371 14.0075C-0.498629 15.3375 0.461371 17.0075 2.00137 17.0075ZM9.53137 10.0075C8.98137 10.0075 8.53137 9.5575 8.53137 9.0075V7.0075C8.53137 6.4575 8.98137 6.0075 9.53137 6.0075C10.0814 6.0075 10.5314 6.4575 10.5314 7.0075V9.0075C10.5314 9.5575 10.0814 10.0075 9.53137 10.0075ZM10.5314 14.0075H8.53137V12.0075H10.5314V14.0075Z"
-                            fill="#CFC799" />
-                    </svg>
+    <div class="content">
+        <div class="profile">
+            <div class="container">
+                <h1 class="profile__title title">Профиль рабочей группы</h1>
+                <div class="profile__row">
+                    <p class="profile__description">
+                        <span class="line"></span>
+                        В данном разделе вы можете посмотреть и отредактировать информацию по своей рабочей группе,
+                        настроить права участников, расшарить настройки полностью или частично для других рабочих групп,
+                        а
+                        также сделать полную копию вашей рабочей группы с ограниченным доступом для тонкой настройки без
+                        публичных оповещений.
+                    </p>
                 </div>
             </div>
         </div>
+        <div class="main-information">
+            <div class="container">
+                <h2 class="main-information__title title">Основная информация</h2>
 
-        <form action="" class="form-work-group">
-        </form>
+                <div id="notices" class="notices">
+                    <div class="notices__wrapper">
+                        <div class="notices__title">Внимание!</div>
+                        <div class="notices__text">Ваши данные сохранены в браузере, но не отправлены на сервер. <br>
+                            Нажмите кнопку “Отправить”, чтобы завершить редактирование.</div>
+                    </div>
+                    <div class="notices__icon">
+                        <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M2.00137 17.0075H17.0614C18.6014 17.0075 19.5614 15.3375 18.7914 14.0075L11.2614 0.9975C10.4914 -0.3325 8.57137 -0.3325 7.80137 0.9975L0.271371 14.0075C-0.498629 15.3375 0.461371 17.0075 2.00137 17.0075ZM9.53137 10.0075C8.98137 10.0075 8.53137 9.5575 8.53137 9.0075V7.0075C8.53137 6.4575 8.98137 6.0075 9.53137 6.0075C10.0814 6.0075 10.5314 6.4575 10.5314 7.0075V9.0075C10.5314 9.5575 10.0814 10.0075 9.53137 10.0075ZM10.5314 14.0075H8.53137V12.0075H10.5314V14.0075Z"
+                                fill="#CFC799" />
+                        </svg>
+                    </div>
+                </div>
+
+                <form action="" class="form-work-group" id="form-work-group">
+                    <div class="form-work-group__content">
+                        <div class="form-work-group__row">
+                            <div class="input-wrapper">
+                                <input type="text" id="work-name" class="input-wrapper__text"
+                                    placeholder="Введите название группы" required>
+                                <label for="work-name" class="input-wrapper__label">Название группы</label>
+                            </div>
+                            <div class="input-wrapper">
+                                <input type="text" id="work-alias" class="input-wrapper__text"
+                                    placeholder="Введите Алиас" required>
+                                <label for="work-alias" class="input-wrapper__label">Алиас</label>
+                                <div class="input-wrapper__notice">Алиас не может содержать русские буквы и пробелы
+                                </div>
+                            </div>
+                            <div class="input-wrapper">
+                                <input type="email" id="work-email" class="input-wrapper__text"
+                                    placeholder="Введите электронную почту" required>
+                                <label for="work-email" class="input-wrapper__label">Электронная почта для
+                                    обращений</label>
+                                <div class="input-wrapper__notice">Некорректный email адрес</div>
+                            </div>
+                            <div class="input-wrapper">
+                                <input type="tel" id="work-phone" class="input-wrapper__text"
+                                    placeholder="+7 (XXX) XXX-XX-XX" required>
+                                <label for="work-phone" class="input-wrapper__label">Телефон представителя</label>
+                            </div>
+                            <div class="input-wrapper">
+                                <input type="text" id="work-fio" class="input-wrapper__text"
+                                    placeholder="Введите полные данные представителя" required>
+                                <label for="work-fio" class="input-wrapper__label">ФИО представителя</label>
+                            </div>
+                            <div class="input-wrapper">
+                                <input type="text" id="work-position" class="input-wrapper__text"
+                                    placeholder="Введите полное наименование должности" required>
+                                <label for="work-position" class="input-wrapper__label">Должность ответственного</label>
+                            </div>
+                        </div>
+                        <div class="input-wrapper input-wrapper--textarea">
+                            <textarea name="work-description-internal" id="work-description-internal"
+                                class="input-wrapper__text" placeholder="Введите краткое и емкое описание"
+                                required></textarea>
+                            <label for="work-description-internal" class="input-wrapper__label">Описание рабочей группы
+                                для внутреннего использования</label>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="work-checkbox" class="checkbox-wrapper__checkbox"
+                                placeholder="Введите полное наименование должности" checked>
+                            <label for="work-checkbox" class="checkbox-wrapper__label">Публичное описание отличается от
+                                внутреннего</label>
+                        </div>
+                        <div class="input-wrapper input-wrapper--textarea">
+                            <textarea name="work-description-public" id="work-description-public"
+                                class="input-wrapper__text" placeholder="Введите краткое и емкое описание"
+                                required></textarea>
+                            <label for="work-description-public" class="input-wrapper__label">Публичное описание рабочей
+                                группы</label>
+                        </div>
+                    </div>
+                    <div class="form-work-group__footer">
+                        <button type="submit" id="form-work-group__submit" class="btn btn-submit">Отправить на
+                            модерацию</button>
+                        <button id="form-work-group__close" class=" btn btn-close">Отмена</button>
+                        <button class="btn btn-save">Сохранить в мои черновики</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
     <script src="js/script.js"></script>
 </body>

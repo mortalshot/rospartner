@@ -1,5 +1,6 @@
 window.addEventListener("DOMContentLoaded", function () {
     var notices = document.getElementById('notices');
+    var workForm = document.getElementById('form-work-group');
     var workName = document.getElementById('work-name');
     var workAlias = document.getElementById('work-alias');
     var workEmail = document.getElementById('work-email');
@@ -10,7 +11,10 @@ window.addEventListener("DOMContentLoaded", function () {
     var workInternalDescription = document.getElementById("work-description-internal");
     var workPublicDescription = document.getElementById("work-description-public");
     var workSubmit = document.getElementById("form-work-group__submit");
+    var workClose = document.getElementById("form-work-group__close");
 
+    /* save form data */
+    // data caching in localStorage
     window.onbeforeunload = function () {
         localStorage.setItem('name', workName.value);
         localStorage.setItem('alias', workAlias.value);
@@ -22,6 +26,7 @@ window.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem('checkbox', workCheckbox.checked);
         localStorage.setItem('PublicDescription', workPublicDescription.value);
     };
+    // form data recovery from localStorage 
     window.onload = function () {
         if (workName.value !== null) workName.value = localStorage.getItem('name');
         if (workAlias.value !== null) workAlias.value = localStorage.getItem('alias');
@@ -43,7 +48,7 @@ window.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-
+    /* phone mask */
     function setCursorPosition(pos, elem) {
         elem.focus();
         if (elem.setSelectionRange) elem.setSelectionRange(pos, pos);
@@ -55,6 +60,7 @@ window.addEventListener("DOMContentLoaded", function () {
             range.select()
         }
     };
+
     function mask(event) {
         var matrix = "+7 (___) ___ ____",
             i = 0,
@@ -72,7 +78,7 @@ window.addEventListener("DOMContentLoaded", function () {
     workPhone.addEventListener("focus", mask, false);
     workPhone.addEventListener("blur", mask, false);
 
-
+    /* workAlias validation */
     workAlias.oninput = () => {
         var workAliasProp = /[а-яА-Я\s]/;
         var input = workAlias.value;
@@ -93,6 +99,7 @@ window.addEventListener("DOMContentLoaded", function () {
         }
     };
 
+    /* workEmail validation */
     workEmail.onchange = () => {
         var workEmailProp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var input = workEmail.value;
@@ -107,6 +114,8 @@ window.addEventListener("DOMContentLoaded", function () {
             submit.disabled = false;
         }
     };
+
+    /* workPublicDescription change required attribute */
     workCheckbox.addEventListener('click', () => {
         if (workCheckbox.checked == false) {
             workPublicDescription.removeAttribute("required");
@@ -115,34 +124,40 @@ window.addEventListener("DOMContentLoaded", function () {
             workPublicDescription.setAttribute("required", "");
         }
     });
-    workSubmit.onclick = () => {
-        let start = Date.now();
-        if (notices.classList.contains('d-flex')) {
-            let timer = setInterval(function () {
-                // сколько времени прошло с начала анимации?
-                let timePassed = Date.now() - start;
 
+    /* hide notices on submit button click */
+    workSubmit.onclick = () => {
+        if (notices.classList.contains('d-flex')) {
+            let start = Date.now();
+            var noticesHeight = notices.clientHeight;
+            let timer = setInterval(function () {
+                let timePassed = Date.now() - start;
                 if (timePassed >= 1000) {
-                    clearInterval(timer); // закончить анимацию через 2 секунды
+                    clearInterval(timer);
+                    notices.style.height = 0;
                     return;
                 }
-
-                // отрисовать анимацию на момент timePassed, прошедший с начала анимации
+                notices.classList.add('hide');
                 draw(timePassed);
-            }, 20);
-            // в то время как timePassed идёт от 0 до 2000
-            // left изменяет значение от 0px до 400px
+            }, 10);
             function draw(timePassed) {
-                notices.style.height = 50 - (timePassed * 0.1) + 'px';
+                notices.style.height = noticesHeight - timePassed * 0.3 + 'px';
+                if (notices.style.marginBottom >= 0) {
+                    notices.style.marginBottom = 20 - timePassed * 2 + 'px';
+                } else {
+                    notices.style.marginBottom = 0 + 'px';
+                }
             }
             setTimeout(() => {
                 notices.classList.remove('d-flex');
-            }, 1050);
+                notices.classList.remove('hide');
+            }, 1000);
         }
+    };
 
-    }
-
-
-
+    /* form reset */
+    workClose.onclick = () => {
+        workForm.reset();
+    };
 });
 
